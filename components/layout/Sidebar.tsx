@@ -65,9 +65,10 @@ const eventSections = [
 
 interface SidebarProps {
   eventId?: string
+  onClose?: () => void
 }
 
-export function Sidebar({ eventId }: SidebarProps) {
+export function Sidebar({ eventId, onClose }: SidebarProps) {
   const pathname = usePathname()
   const router = useRouter()
   const [collapsed, setCollapsed] = useState(false)
@@ -126,7 +127,7 @@ export function Sidebar({ eventId }: SidebarProps) {
       )}>
         {!collapsed ? (
           <Link href="/events" className="flex items-center gap-3 group">
-            <div className="relative h-9 w-9 rounded-xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-900/40 group-hover:shadow-orange-500/50 transition-shadow duration-200 flex-shrink-0">
+            <div className="relative h-9 w-9 rounded-xl bg-linear-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-900/40 group-hover:shadow-orange-500/50 transition-shadow duration-200 shrink-0">
               <Building2 className="h-5 w-5 text-white" />
               <span className="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-green-400 ring-2 ring-[#0c1a6e]" />
             </div>
@@ -136,7 +137,7 @@ export function Sidebar({ eventId }: SidebarProps) {
             </div>
           </Link>
         ) : (
-          <div className="relative h-9 w-9 rounded-xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-900/40">
+          <div className="relative h-9 w-9 rounded-xl bg-linear-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-900/40">
             <Building2 className="h-4 w-4 text-white" />
             <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-green-400 ring-2 ring-[#0c1a6e]" />
           </div>
@@ -165,7 +166,7 @@ export function Sidebar({ eventId }: SidebarProps) {
             )}
           >
             {pathname === '/events' && (
-              <span className="absolute left-0 top-1/2 -translate-y-1/2 h-6 w-[3px] rounded-r-full bg-orange-400" />
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 h-6 w-0.75 rounded-r-full bg-orange-400" />
             )}
             <Building2
               className={cn(
@@ -193,7 +194,7 @@ export function Sidebar({ eventId }: SidebarProps) {
                   onClick={() => setPickerOpen((o) => !o)}
                   className="w-full flex items-center gap-2 rounded-lg bg-white/8 border border-white/12 px-3 py-2 text-left hover:bg-white/12 transition-colors group"
                 >
-                  <div className="h-5 w-5 rounded-md bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center shrink-0">
+                  <div className="h-5 w-5 rounded-md bg-linear-to-br from-orange-400 to-orange-600 flex items-center justify-center shrink-0">
                     <Building2 className="h-3 w-3 text-white" />
                   </div>
                   <span className="flex-1 text-xs font-medium text-white/80 truncate leading-tight">
@@ -268,7 +269,7 @@ export function Sidebar({ eventId }: SidebarProps) {
                       )}
                     >
                       {active && (
-                        <span className="absolute left-0 top-1/2 -translate-y-1/2 h-6 w-[3px] rounded-r-full bg-orange-400" />
+                        <span className="absolute left-0 top-1/2 -translate-y-1/2 h-6 w-0.75 rounded-r-full bg-orange-400" />
                       )}
                       <item.icon
                         className={cn(

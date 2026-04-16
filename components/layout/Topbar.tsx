@@ -1,5 +1,5 @@
 'use client'
-import { Bell, LogOut, Settings, ChevronDown } from 'lucide-react'
+import { Bell, LogOut, Settings, ChevronDown, Menu } from 'lucide-react'
 import { useAuthStore } from '@/store/auth'
 import { logout } from '@/lib/hooks/useAuth'
 import { useRouter, usePathname } from 'next/navigation'
@@ -43,7 +43,7 @@ function getTitle(pathname: string): string {
   return 'KSR Events'
 }
 
-export function Topbar() {
+export function Topbar({ onMenuClick }: { onMenuClick?: () => void }) {
   const { user } = useAuthStore()
   const router = useRouter()
   const pathname = usePathname()
@@ -56,11 +56,19 @@ export function Topbar() {
   const title = getTitle(pathname)
 
   return (
-    <header className="flex h-14 items-center justify-between border-b border-[#dae3ff] bg-white px-6 sticky top-0 z-20 shadow-sm shadow-[#dae3ff]/60">
-      {/* Page title */}
-      <div className="flex items-center gap-3">
-        <div className="h-5 w-1 rounded-full bg-linear-to-b from-orange-400 to-orange-600" />
-        <h1 className="text-[15px] font-bold text-[#0c1a6e] tracking-tight">{title}</h1>
+    <header className="flex h-14 items-center justify-between border-b border-[#dae3ff] bg-white px-3 sm:px-6 sticky top-0 z-20 shadow-sm shadow-[#dae3ff]/60">
+      {/* Left: hamburger (mobile) + page title */}
+      <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+        <button
+          type="button"
+          onClick={onMenuClick}
+          className="lg:hidden p-1.5 rounded-lg text-gray-500 hover:bg-[#eef3ff] hover:text-[#1e3a8a] transition-colors shrink-0"
+          aria-label="Open menu"
+        >
+          <Menu className="h-5 w-5" />
+        </button>
+        <div className="h-5 w-1 rounded-full bg-linear-to-b from-orange-400 to-orange-600 shrink-0" />
+        <h1 className="text-sm sm:text-[15px] font-bold text-[#0c1a6e] tracking-tight truncate">{title}</h1>
       </div>
 
       <div className="flex items-center gap-1.5">
