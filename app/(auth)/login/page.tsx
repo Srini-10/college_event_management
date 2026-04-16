@@ -131,8 +131,6 @@ export default function LoginPage() {
           className="absolute -bottom-32 -left-32 h-80 w-80 rounded-full animate-float-reverse"
           style={{ background: 'radial-gradient(circle,rgba(99,152,255,0.14) 0%,transparent 70%)' }}
         />
-        <div className="absolute top-1/3 left-16 h-14 w-14 rounded-xl rotate-45 bg-orange-500/12 animate-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-20 left-24 h-32 w-32 rounded-full border border-white/6 animate-spin-slow" />
         <div className="absolute bottom-1/4 right-1/4 h-20 w-20 rounded-full border border-orange-400/10 animate-float-reverse" style={{ animationDelay: '1s' }} />
         <div
           className="absolute inset-0 opacity-[0.035]"
