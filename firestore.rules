@@ -1,0 +1,23 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // All authenticated users are trusted staff for this internal tool.
+    // Any logged-in user can read and write all documents.
+    // Tighten these rules before going to production.
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Public: event feedback submission (no auth required)
+    match /events/{eventId}/feedback/{feedbackId} {
+      allow create: if true;
+    }
+
+    // Public: event schedule (read-only, for public event page)
+    match /events/{eventId}/schedule/{slotId} {
+      allow read: if true;
+    }
+  }
+}
